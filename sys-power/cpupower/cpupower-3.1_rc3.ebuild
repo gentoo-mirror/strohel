@@ -17,6 +17,9 @@ SLOT="0"
 KEYWORDS="~x86 ~amd64"
 IUSE=""
 
+# while the binaries are renamed, other files still collide
+RDEPEND="!sys-power/cpufrequtils"
+
 S="${WORKDIR}/${MY_P}/tools/power/cpupower"
 
 src_unpack() {
