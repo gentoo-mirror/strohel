@@ -15,7 +15,7 @@ SRC_URI="mirror://kernel/linux/kernel/v3.x/testing/${MY_P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86 ~amd64"
-IUSE=""
+IUSE="nls benchmark"
 
 # while the binaries are renamed, other files still collide
 RDEPEND="!sys-power/cpufrequtils"
@@ -39,6 +39,10 @@ src_prepare() {
 }
 
 src_compile() {
+	use nls && NLS="true" || NLS="false"
+	export NLS
+	use benchmark && CPUFRQ_BENCH="true" || CPUFRQ_BENCH="false"
+	export CPUFRQ_BENCH
 	# set strip command to no-op so that is is handled by portage
 	emake STRIP=/bin/true
 }
