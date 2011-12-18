@@ -1,0 +1,32 @@
+From 7588cfe2637edd1cd27094e3612fd17b53cf1897 Mon Sep 17 00:00:00 2001
+From: Modestas Vainius <modax@debian.org>
+Date: Sun, 18 Dec 2011 16:20:01 +0100
+Subject: [PATCH] FindMySQLAmarok.cmake fix argumets when calling mysql_config
+
+This didn't break the build as MYSQL_CFLAGS already includes
+-I/usr/include/mysql but at least prevents ugly warning when
+calling cmake.
+
+Patch by Modestas Vainius, thanks.
+
+CCMAIL: modax@debian.org
+---
+ cmake/modules/FindMySQLAmarok.cmake |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/cmake/modules/FindMySQLAmarok.cmake b/cmake/modules/FindMySQLAmarok.cmake
+index 74805ca..c870b9d 100644
+--- a/cmake/modules/FindMySQLAmarok.cmake
++++ b/cmake/modules/FindMySQLAmarok.cmake
+@@ -17,7 +17,7 @@ if(NOT WIN32)
+ endif(NOT WIN32)
+ 
+ if(MYSQLCONFIG_EXECUTABLE)
+-    exec_program(${MYSQLCONFIG_EXECUTABLE} ARGS --variable=pkgincludedir RETURN_VALUE _return_VALUE OUTPUT_VARIABLE MYSQL_INCLUDE_DIR)
++    exec_program(${MYSQLCONFIG_EXECUTABLE} ARGS --include RETURN_VALUE _return_VALUE OUTPUT_VARIABLE MYSQL_INCLUDE_DIR)
+     exec_program(${MYSQLCONFIG_EXECUTABLE} ARGS --cflags RETURN_VALUE _return_VALUE OUTPUT_VARIABLE MYSQL_CFLAGS)
+     exec_program(${MYSQLCONFIG_EXECUTABLE} ARGS --libs RETURN_VALUE _return_VALUE OUTPUT_VARIABLE MYSQL_LIBRARIES)
+     exec_program(${MYSQLCONFIG_EXECUTABLE} ARGS --libmysqld-libs RETURN_VALUE _return_VALUE OUTPUT_VARIABLE MYSQL_EMBEDDED_LIBSTEMP)
+-- 
+1.7.4.5
+
