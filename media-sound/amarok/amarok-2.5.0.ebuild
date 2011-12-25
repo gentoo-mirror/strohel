@@ -11,13 +11,13 @@ oc pa pl pt pt_BR ro ru se si sk sl sq sr sr@ijekavian sr@ijekavianlatin
 sr@Latn sv tg th tr ug uk wa zh_CN zh_TW"
 KDE_SCM="git"
 KDE_REQUIRED="never"
-inherit eutils flag-o-matic kde4-base
+inherit flag-o-matic kde4-base
 
 DESCRIPTION="Advanced audio player based on KDE framework."
 HOMEPAGE="http://amarok.kde.org/"
 if [[ ${PV} != *9999* ]]; then
 	SRC_URI="mirror://kde/stable/${PN}/${PV}/src/${P}.tar.bz2"
-	KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
+	KEYWORDS="~amd64 ~ppc ~x86"
 else
 	KEYWORDS=""
 fi
@@ -78,8 +78,6 @@ RDEPEND="${COMMONDEPEND}
 "
 
 src_prepare() {
-	epatch "${FILESDIR}/${P}-fix-calling-mysql-config.patch"
-
 	if ! use player; then
 		# Disable po processing
 		sed -e "s:include(MacroOptionalAddSubdirectory)::" \
@@ -153,7 +151,7 @@ pkg_postinst() {
 			elog "You've disabled the amarok support for embedded mysql DBs."
 			elog "You'll have to configure amarok to use an external db server."
 			echo
-			elog "Please read http://amaroklive.com/wiki/MySQL_Server for details on how"
+			elog "Please read http://amarok.kde.org/wiki/MySQL_Server for details on how"
 			elog "to configure the external db and migrate your data from the embedded database."
 			echo
 
