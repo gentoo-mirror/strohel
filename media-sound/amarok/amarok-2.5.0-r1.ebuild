@@ -24,11 +24,7 @@ fi
 
 LICENSE="GPL-2"
 SLOT="4"
-IUSE="cdda daap debug +embedded ipod lastfm mp3tunes mtp ofa opengl semantic-desktop +utils"
-
-# Tests require gmock - http://code.google.com/p/gmock/
-# It's not in the tree yet
-RESTRICT="test"
+IUSE="cdda daap debug +embedded ipod lastfm mp3tunes mtp ofa opengl semantic-desktop test +utils"
 
 # ipod requires gdk enabled and also gtk compiled in libgpod
 COMMONDEPEND="
@@ -64,20 +60,27 @@ COMMONDEPEND="
 DEPEND="${COMMONDEPEND}
 	dev-util/automoc
 	dev-util/pkgconfig
+	test? ( >=dev-cpp/gmock-1.4.0 )
 "
 RDEPEND="${COMMONDEPEND}
 	$(add_kdebase_dep phonon-kde)
 	!media-sound/amarok-utils
 "
 
+# tests don't currently build when MySQL embedded collection is disabled
+REQUIRED_USE="test? ( embedded )"
+
 src_prepare() {
-	# en locale is special in a way that it is always enabled. English Amarok
-	# handbook however lies in the doc/en_US folder and thus is not picked
-	# up by kde4-functions eclass. Rename it.
-	sed -e 's:add_subdirectory(en_US):add_subdirectory(en):' \
-		-i "${S}/doc/CMakeLists.txt" \
-		|| die "Replacing en_US by en in doc/CMakeLists.txt failed."
-	mv "${S}/doc/en_US" "${S}/doc/en" || die "Moving doc/en_US to doc/en failed."
+	# only released versions have handbooks bundled
+	if [[ ${PV} != *9999* ]]; then
+		# en locale is special in a way that it is always enabled. English Amarok
+		# handbook however lies in the doc/en_US folder and thus is not picked
+		# up by kde4-functions eclass. Rename it.
+		sed -e 's:add_subdirectory(en_US):add_subdirectory(en):' \
+			-i "${S}/doc/CMakeLists.txt" \
+			|| die "Replacing en_US by en in doc/CMakeLists.txt failed."
+		mv "${S}/doc/en_US" "${S}/doc/en" || die "Moving doc/en_US to doc/en failed."
+	fi
 
 	kde4-base_src_prepare
 }
@@ -88,11 +91,13 @@ src_configure() {
 	local mycmakeargs
 
 	# Mygpo-qt not yet in portage, add IUSE when available
+	# we already have test in IUSE, prevent 2nd compilation in src test
 	mycmakeargs=(
 		-DWITH_PLAYER=ON
 		-DWITH_Libgcrypt=OFF
 		-DWITH_Mygpo-qt=OFF
 		$(cmake-utils_use embedded WITH_MYSQL_EMBEDDED)
+		$(cmake-utils_use test KDE4_BUILD_TESTS)
 		$(cmake-utils_use_with ipod)
 		$(cmake-utils_use_with ipod Gdk)
 		$(cmake-utils_use_with lastfm LibLastFm)
@@ -108,6 +113,19 @@ src_configure() {
 		# $(cmake-utils_use_with semantic-desktop Soprano)
 
 	kde4-base_src_configure
+}
+
+src_test() {
+	# prevent 2nd compilation, we have already built tests if USE=test
+
+	local excluded_tests="testmetafiletrack|testsqlscanmanager|testsqluserplaylistprovider"
+	einfo "Following tests are currently excluded:"
+	einfo " * termatafiletrack: fails"
+	einfo " * testsqlscanmanager: takes too long (60s and more)"
+	einfo " * testsqluserplaylistprovider: fails"
+
+	# sometimes tests timeout after 1500s; make the waiting shorter
+	cmake-utils_src_test --timeout 120 --exclude-regex "${excluded_tests}"
 }
 
 pkg_postinst() {
