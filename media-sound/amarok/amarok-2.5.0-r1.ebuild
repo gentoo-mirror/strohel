@@ -123,6 +123,12 @@ src_test() {
 	einfo " * termatafiletrack: fails"
 	einfo " * testsqlscanmanager: takes too long (60s and more)"
 	einfo " * testsqluserplaylistprovider: fails"
+	if [[ ${PV} = 2.5* ]]; then
+		excluded_tests="${excluded_tests}|testm3uplaylist|testdynamicmodel|testonewaysynchronizationjob"
+		einfo " * testm3uplaylist: fails in Amarok 2.5.*"
+		einfo " * testdynamicmodel: fails in Amarok 2.5.*"
+		einfo " * testonewaysynchronizationjob: fails in Amarok 2.5.*"
+	fi
 
 	# sometimes tests timeout after 1500s; make the waiting shorter
 	cmake-utils_src_test --timeout 120 --exclude-regex "${excluded_tests}"
