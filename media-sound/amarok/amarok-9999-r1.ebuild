@@ -118,13 +118,13 @@ src_configure() {
 src_test() {
 	# prevent 2nd compilation, we have already built tests if USE=test
 
-	local excluded_tests="testmetafiletrack|testsqlscanmanager|testsqluserplaylistprovider"
+	local excluded_tests="testsqlscanmanager|testsqluserplaylistprovider"
 	einfo "Following tests are currently excluded:"
-	einfo " * termatafiletrack: fails when run as root"
 	einfo " * testsqlscanmanager: takes too long (60s and more)"
 	einfo " * testsqluserplaylistprovider: fails"
 	if [[ ${PV} = 2.5* ]]; then
-		excluded_tests="${excluded_tests}|testm3uplaylist|testdynamicmodel|testonewaysynchronizationjob"
+		excluded_tests="${excluded_tests}|testmetafiletrack|testm3uplaylist|testdynamicmodel|testonewaysynchronizationjob"
+		einfo " * termatafiletrack: fails when run as root in Amarok 2.5.*"
 		einfo " * testm3uplaylist: fails in Amarok 2.5.*"
 		einfo " * testdynamicmodel: fails in Amarok 2.5.*"
 		einfo " * testonewaysynchronizationjob: fails in Amarok 2.5.*"
