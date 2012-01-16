@@ -120,7 +120,7 @@ src_test() {
 
 	local excluded_tests="testmetafiletrack|testsqlscanmanager|testsqluserplaylistprovider"
 	einfo "Following tests are currently excluded:"
-	einfo " * termatafiletrack: fails"
+	einfo " * termatafiletrack: fails when run as root"
 	einfo " * testsqlscanmanager: takes too long (60s and more)"
 	einfo " * testsqluserplaylistprovider: fails"
 	if [[ ${PV} = 2.5* ]]; then
