@@ -132,6 +132,9 @@ src_test() {
 
 	# sometimes tests timeout after 1500s; make the waiting shorter
 	cmake-utils_src_test --timeout 120 --exclude-regex "${excluded_tests}"
+
+	# Following file may be left dangling by testsuite and preventing merge
+	rm -f "${HOME}/.pulse-cookie"
 }
 
 pkg_postinst() {
