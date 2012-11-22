@@ -1,16 +1,23 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 EAPI="4"
 
-inherit eutils
+inherit eutils multilib
 
 MY_P="linux-${PV/_/-}"
 
 DESCRIPTION="successor to cpufrequtils distributed along Linux kernel sources"
 HOMEPAGE="http://lwn.net/Articles/433002/"
-SRC_URI="mirror://kernel/linux/kernel/v3.x/testing/${MY_P}.tar.bz2"
+case "${PV}" in
+	*_rc[0-9]*)
+		SRC_URI="mirror://kernel/linux/kernel/v3.x/testing/${MY_P}.tar.bz2"
+		;;
+	*)
+		SRC_URI="mirror://kernel/linux/kernel/v3.x/${MY_P}.tar.bz2"
+		;;
+esac
 
 LICENSE="GPL-2"
 SLOT="0"
