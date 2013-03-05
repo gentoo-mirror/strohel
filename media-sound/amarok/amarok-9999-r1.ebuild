@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -36,12 +36,12 @@ COMMONDEPEND="
 	>=media-libs/taglib-extras-1.0.1
 	sys-libs/zlib
 	>=virtual/mysql-5.1[embedded?]
-	x11-libs/qt-script
+	dev-qt/qtscript
 	>=x11-libs/qtscriptgenerator-0.1.0
 	cdda? (
 		$(add_kdebase_dep libkcddb)
 		$(add_kdebase_dep libkcompactdisc)
-		$(add_kdebase_dep kdemultimedia-kioslaves)
+		$(add_kdebase_dep audiocd-kio)
 	)
 	ipod? ( >=media-libs/libgpod-0.7.0[gtk] )
 	lastfm? ( >=media-libs/liblastfm-0.3.0 )
@@ -51,7 +51,7 @@ COMMONDEPEND="
 		dev-libs/openssl
 		net-libs/loudmouth
 		net-misc/curl
-		x11-libs/qt-core[glib]
+		dev-qt/qtcore[glib]
 	)
 	mtp? ( >=media-libs/libmtp-1.0.0 )
 	ofa? ( >=media-libs/libofa-0.9.0 )
@@ -59,7 +59,7 @@ COMMONDEPEND="
 "
 DEPEND="${COMMONDEPEND}
 	dev-util/automoc
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	test? ( >=dev-cpp/gmock-1.4.0 )
 "
 RDEPEND="${COMMONDEPEND}
