@@ -1,4 +1,4 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-sound/musescore/musescore-0.9.4.ebuild,v 1.3 2009/07/22 17:35:31 ssuominen Exp $
 
@@ -20,17 +20,17 @@ RDEPEND="sys-libs/zlib
 	media-libs/alsa-lib
 	media-sound/fluidsynth
 	media-libs/portaudio
-	x11-libs/qt-core:4
-	x11-libs/qt-script:4
-	x11-libs/qt-qt3support:4
-	x11-libs/qt-gui:4
-	x11-libs/qt-svg:4
+	dev-qt/qtcore:4
+	dev-qt/qtscript:4
+	dev-qt/qt3support:4
+	dev-qt/qtgui:4
+	dev-qt/qtsvg:4
 	x11-libs/qtscriptgenerator
 	jack? ( media-sound/jack-audio-connection-kit )"
 DEPEND="${RDEPEND}
 	dev-texlive/texlive-context
 	app-doc/doxygen
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 
 S=${WORKDIR}/mscore-${PV}/mscore
 VARTEXFONTS=${T}/fonts
