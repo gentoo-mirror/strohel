@@ -1,0 +1,18 @@
+--- a/mscore/CMakeLists.txt	2009-10-18 22:11:17.974218835 +0200
++++ b/mscore/CMakeLists.txt	2009-10-18 22:11:56.907250831 +0200
+@@ -204,8 +204,13 @@
+       install( FILES packaging/mscore.desktop DESTINATION share/applications)
+ endif (NOT MINGW AND NOT APPLE)
+ 
+-set (subdirs awl osdabzip rtf2html mscore share manual demos
+-     scriptgen singleapp fluid)
++set (subdirs awl osdabzip rtf2html mscore share manual demos
++     singleapp fluid)
++
++set (BUILD_SCRIPTGEN ON CACHE BOOL "Generate Qt script bindings. (collides with qtscriptgenerator project)")
++if (BUILD_SCRIPTGEN)
++	set (subdirs ${subdirs} scriptgen)
++endif ()
+ 
+ if (MINGW OR APPLE)
+       set (subdirs ${subdirs} portmidi)

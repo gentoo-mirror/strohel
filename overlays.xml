@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE repositories SYSTEM "/dtd/repositories.dtd">
+<repositories xmlns="" version="1.0">
+  <repo quality="experimental" status="unofficial">
+    <name><![CDATA[strohel]]></name>
+    <description lang="en"><![CDATA[strohel's overlay]]></description>
+    <homepage>https://github.com/strohel/strohel-overlay</homepage>
+    <owner type="person">
+      <email>matej@laitl.cz</email>
+      <name><![CDATA[Matěj Laitl]]></name>
+    </owner>
+    <source type="git">git://github.com/strohel/strohel-overlay.git</source>
+    <source type="git">https://strohel@github.com/strohel/strohel-overlay.git</source>
+    <source type="git">git+ssh://git@github.com:strohel/strohel-overlay.git</source>
+    <feed>https://github.com/strohel/strohel-overlay/commits/master.atom</feed>
+  </repo>
+</repositories>
