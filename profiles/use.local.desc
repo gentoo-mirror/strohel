@@ -1,0 +1,12 @@
+# This file is deprecated as per GLEP 56 in favor of metadata.xml. Please add
+# your descriptions to your package's metadata.xml ONLY.
+# * generated automatically using pmaint *
+
+dev-python/cython:numpy - Enable support for dev-python/numpy
+media-libs/taglib:asf - Provide support for Microsoft's 'advanced systems format' media container.
+media-sound/amarok:daap - Enable the scripts for music sharing through DAAP. This flag adds dependencies on www-servers/mongrel to allow sharing of the Amarok music collection through DAAP protocol. Please note that turning this flag off has no effect on DAAP browsing.
+media-sound/amarok:embedded - Use libmysqld, MySQL embedded server library. Try disabling this if you encounter -PIC related in amarok, it will make amarok rely only on standalone MySQL server.
+media-sound/amarok:lastfm - Enable Last.fm streaming services support through media-libs/liblastfm
+media-sound/amarok:mp3tunes - Enable mp3tunes integration
+media-sound/amarok:ofa - Use media-libs/libofa to compute MusicDNS acoustic fingerprints (used by MusicBrainz)
+media-sound/amarok:utils - Build the utils - old media-sound/amarok-utils
