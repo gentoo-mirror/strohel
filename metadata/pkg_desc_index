@@ -2,6 +2,7 @@ dev-python/cython 9999: Compiler for writing C extensions for the Python languag
 games-server/bukkit 1.4.6_rc0_p1 9999: Generic API component of the plugin-based server mod for Minecraft
 games-server/craftbukkit 1.4.6_rc0_p1 9999: Bukkit implementation for the official Minecraft server
 games-sports/racer 1.1-r1: 2D car racing. 7 different tracks, many cars, night racing and many more.
+games-strategy/0ad 99999: A free, real-time strategy game of ancient warfare
 media-libs/libmygpo-qt 1.0.5 1.0.6 1.0.7: C++/Qt Library wrapping the gpodder.net Webservice
 media-libs/taglib 9999: A library for reading and editing audio meta data
 media-sound/mp3gain 1.5.2: A program to analyze and adjust MP3 files to same volume
