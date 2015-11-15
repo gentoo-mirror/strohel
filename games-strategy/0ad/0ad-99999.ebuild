@@ -27,7 +27,7 @@ RDEPEND="
 	!games-strategy/0ad-data
 	media-gfx/nvidia-texture-tools
 	media-libs/libpng:0
-	media-libs/libsdl[X,opengl,video]
+	>=media-libs/libsdl2-2.0.2[X,opengl,video]
 	net-libs/enet:1.3
 	net-libs/miniupnpc
 	net-libs/gloox
