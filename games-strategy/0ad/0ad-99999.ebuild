@@ -83,24 +83,34 @@ src_test() {
 }
 
 src_install() {
-	# data
+	newgamesbin binaries/system/pyrogenesis 0ad
+	use editor && newgamesbin binaries/system/ActorEditor 0ad-ActorEditor
+
 	insinto "${GAMES_DATADIR}"/${PN}
 	doins -r binaries/data/*
 
-	# bin
-	dogamesbin binaries/system/pyrogenesis
-
-	# libs
 	exeinto "$(games_get_libdir)"/${PN}
 	doexe binaries/system/libCollada.so
+	doexe libraries/source/spidermonkey/lib/*.so
 	use editor && doexe binaries/system/libAtlasUI.so
 
-	# other
 	dodoc binaries/system/readme.txt
-	doicon build/resources/${PN}.png
-	games_make_wrapper ${PN} "${GAMES_BINDIR}/pyrogenesis"
+	doicon -s 128 build/resources/${PN}.png
 	make_desktop_entry ${PN} "0 A.D."
 
-	# permissions
 	prepgamesdirs
+}
+
+pkg_preinst() {
+	games_pkg_preinst
+	gnome2_icon_savelist
+}
+
+pkg_postinst() {
+	games_pkg_postinst
+	gnome2_icon_cache_update
+}
+
+pkg_postrm() {
+	gnome2_icon_cache_update
 }
