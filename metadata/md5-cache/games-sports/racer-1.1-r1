@@ -1,0 +1,12 @@
+DEFINED_PHASES=install
+DEPEND=media-libs/allegro:0 media-libs/jpeg
+DESCRIPTION=2D car racing. 7 different tracks, many cars, night racing and many more.
+EAPI=2
+HOMEPAGE=http://hippo.nipax.cz/download.en.php
+KEYWORDS=~x86
+LICENSE=GPL-2
+RDEPEND=media-libs/allegro:0 media-libs/jpeg
+SLOT=0
+SRC_URI=http://hippo.nipax.cz/src/racer-1.1.tar.gz
+_eclass_exported_funcs=src_install:-
+_md5_=801de605f318e33f9a580f09b5fb44b6
