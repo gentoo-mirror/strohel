@@ -1,3 +1,4 @@
+dev-python/pyyaml 3.11: YAML parser and emitter for Python
 dev-vcs/git-lfs 1.2.0: Git extension for versioning large files
 games-server/bukkit 1.4.6_rc0_p1 9999: Generic API component of the plugin-based server mod for Minecraft
 games-server/craftbukkit 1.4.6_rc0_p1 9999: Bukkit implementation for the official Minecraft server
