@@ -3,6 +3,3 @@
 # * generated automatically using pmaint *
 
 dev-python/pyyaml:libyaml - enable support for C implementation using libyaml
-games-strategy/0ad:editor - Include Atlas scenario editor projects
-games-strategy/0ad:sound - Audio support
-media-libs/taglib:asf - Provide support for Microsoft's 'advanced systems format' media container.
