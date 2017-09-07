@@ -8,5 +8,4 @@ LICENSE=GPL-2
 RDEPEND=media-libs/allegro:0 media-libs/jpeg
 SLOT=0
 SRC_URI=http://hippo.nipax.cz/src/racer-1.1.tar.gz
-_eclass_exported_funcs=src_install:-
 _md5_=801de605f318e33f9a580f09b5fb44b6
