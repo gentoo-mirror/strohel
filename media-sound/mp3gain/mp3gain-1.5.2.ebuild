@@ -1,8 +1,7 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
 
-EAPI=2
+EAPI=7
 inherit eutils toolchain-funcs
 
 MY_P=${P//./_}
@@ -13,7 +12,7 @@ SRC_URI="mirror://sourceforge/${PN}/${MY_P}-src.zip"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~hppa ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~alpha ~amd64 ~hppa ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux"
 IUSE=""
 
 RDEPEND=""
@@ -27,7 +26,7 @@ src_prepare() {
 		-e 's:$(CC) -o:$(CC) $(LDFLAGS) -o:' \
 		Makefile || die
 
-	epatch_user
+	default_src_prepare
 }
 
 src_compile() {
